@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BruChewie | Dubai Chewy Cookie</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<style>
+    body {
+    background-image: url("bg.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100vh;
+    margin: 0; /* Removes default margin around the body */
+}
+</style>
+
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo-container">
+                <img src="bruchewie logo.png" class="nav-circle-logo" width="60" height="60">
+            </div>
+            <div class="logo">BruChewie</div>
+            <div class="search-box">
+                <input type="text" placeholder="Search...">
+                <button>🔍</button>
+            </div>
+            <ul class="nav-links">
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="signup.html">Register</a></li>
+                <li><a href="login.html" class="icon-link">Profile</a></li>
+                <li><a href="checkout.html" class="icon-link">Cart(<span id="cart-count">0</span>)</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="promo-banner">
+        <marquee behavior="scroll" direction="left">✨ "Flavour to Savor" - The Rich Taste of Cocoa ✨</marquee>
+    </div>
+
+    <main>
+        <div class="small-popup" id="location-popup">
+            <p>📍 Small Pop-up: Find us at <strong>Impiana Jaya</strong>!</p>
+            <button onclick="document.getElementById('location-popup').style.display='none'">&times;</button>
+        </div>
+
+        <section class="product-section">
+            <h2>Best Seller / Top Selling</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image-placeholder">
+                        <img src="6pcs_mini.png" class="product-image" width="200" height="150">
+                    </div>
+                    <h3>6pcs mini bite</h3>
+                    <input type="radio" name="flavor" value="pistachio"> Pistachio
+                    <input type="radio" name="flavor" value="kinder"> Kinder Bueno
+                    <p class="price">BND$5.00</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-image-placeholder">
+                        <img src="regular_dcc.png" class="product-image" width="200" height="200">
+                    </div>
+                    <h3>1pc regular size</h3>
+                    <input type="radio" name="flavor" value="pistachio"> Pistachio
+                    <input type="radio" name="flavor" value="kinder"> Kinder Bueno
+                    <p class="price">BND$3.50</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-image-placeholder">
+                        <img src="mini_gift_box.png" class="product-image" width="200" height="150">
+                    </div>
+                    <h3>mini gift box 4pcs mini bite</h3>
+                    <input type="radio" name="flavor" value="pistachio"> Pistachio
+                    <input type="radio" name="flavor" value="kinder"> Kinder Bueno
+                    <p class="price">BND$7.00</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+        </section>
+
+        <section class="product-section">
+            <h2>PRE - ORDER</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image-placeholder">
+                        <img src="regular_dcc.png" class="product-image" width="200" height="200">
+                    </div>
+                    <h3>1pc regular size</h3>
+                    <input type="radio" name="flavor" value="pistachio"> Pistachio
+                    <input type="radio" name="flavor" value="kinder"> Kinder Bueno
+                    <p class="price">BND$3.50</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-image-placeholder">
+                        <img src="4_pc_mini.png" class="product-image" width="200" height="200">
+                    </div>
+                    <h3>4pc mini bite</h3>
+                    <input type="radio" name="flavor" value="pistachio"> Pistachio
+                    <input type="radio" name="flavor" value="kinder"> Kinder Bueno
+                    <p class="price">BND$4.00</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-image-placeholder">
+                        <img src="6pcs_mini.png" class="product-image" width="200" height="150">
+                    </div>
+                    <h3>6pc mini bite</h3>
+                    <input type="radio" name="flavor" value="pistachio"> Pistachio
+                    <input type="radio" name="flavor" value="kinder"> Kinder Bueno
+                    <p class="price">BND$5.00</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-image-placeholder">
+                        <img src="xl_bento.png" class="product-image" width="200" height="200">
+                    </div>
+                    <h3>XL / bento</h3>
+                    <input type="radio" name="flavor" value="pistachio"> Pistachio
+                    <input type="radio" name="flavor" value="kinder"> Kinder Bueno
+                    <p class="price">BND$15.00</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-image-placeholder">
+                        <img src="roll_dcc.png" class="product-image" width="200" height="200">
+                    </div>
+                    <h3>roll</h3>
+                    <input type="radio" name="flavor" value="pistachio"> Pistachio
+                    <input type="radio" name="flavor" value="kinder"> Kinder Bueno
+                    <p class="price">BND$11.00</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-image-placeholder">
+                        <img src="mini_gift_box.png" class="product-image" width="200" height="150">
+                    </div>
+                    <h3>mini gift box 4pcs mini bite</h3>
+                    <input type="radio" name="flavor" value="pistachio"> Pistachio
+                    <input type="radio" name="flavor" value="kinder"> Kinder Bueno
+                    <p class="price">BND$7.00</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Operating Hours</h3>
+                <p>Monday - Thursday</p> <br>
+                <p>Book <strong>3 days in advance</strong></p>
+                <p><em>Last minute orders will not be entertained.</em></p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Information & Policy</h3>
+                <p><a href="bruchewie.html">About Us</a> | <a href="contact.html">Contact Us</a></p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Payment Gateways</h3>
+                <p>BIBD | TAIB</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 BruChewie. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

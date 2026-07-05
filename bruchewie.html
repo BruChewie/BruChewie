@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BruChewie | About Us</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-image: url("bg.jpg");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            background-size: cover;
+            min-height: 100vh;
+            margin: 0; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .about-wrapper {
+            background: rgba(255, 255, 255, 0.96);
+            border: 2px solid #8B4513;
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 700px;
+            width: 90%;
+            margin: 40px auto;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .about-title {
+            color: #8B4513;
+            font-size: 32px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            border-bottom: 2px dashed #8B4513;
+            padding-bottom: 10px;
+        }
+
+        .about-subtitle {
+            font-style: italic;
+            color: #D2691E;
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+
+        .about-content p {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background-color: #fdf6f0;
+            border-left: 4px solid #8B4513;
+            padding: 15px;
+            margin-top: 30px;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <header style="width: 100%;">
+        <nav class="navbar">
+            <div class="logo-container">
+                <img src="bruchewie logo.png" class="nav-circle-logo" width="60" height="60">
+                <div class="logo">BruChewie</div>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="Search...">
+                <button>🔍</button>
+            </div>
+            <ul class="nav-links">
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="signup.html">Register</a></li>
+                <li><a href="login.html" class="icon-link">Profile</a></li>
+                <li><a href="checkout.html" class="icon-link">Cart(<span id="cart-count">0</span>)</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main style="width:100%;">
+        <div class="about-wrapper">
+            <h1 class="about-title">Our Story</h1>
+            <div class="about-subtitle">Bringing Dubai's Viral Chewy Cookies to Brunei</div>
+            
+            <div class="about-content">
+                <p>
+                    Welcome to <strong>BruChewie</strong>! We are a passionate team dedicated to creating the most delicious and high-quality cookies with inspiration from Dubai Chewy Cookies. 
+            Our journey began with a simple idea: to bring the joy of homemade Dubai Chewy Cookies to Bruneian. 
+                </p>
+                <p>
+                     At <strong>BruChewie</strong>, we believe that this is more than just a treat; they are a way to connect with people and create memorable experiences. 
+            Our Dubai Chewy Cookies are made with love, using only the finest ingredients to ensure every bite is a delightful experience. 
+                </p>
+                
+                <div class="highlight-box">
+                    "We take pride in our unique flavors and innovative recipes that cater to all tastes. So we hope you enjoy them as much as we enjoy making them, and looking forward to your support!"
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
