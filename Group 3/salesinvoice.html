@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BruChewie</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: 'Courier New', Courier, monospace; /* Classic invoice font style */
+            padding: 20px;
+            margin: 0;
+        }
+        .invoice-wrapper {
+            background: white;
+            max-width: 500px;
+            margin: 30px auto;
+            padding: 30px;
+            border: 1px solid #ccc;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        .invoice-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .invoice-header h1 {
+            margin: 0;
+            color: #8B4513;
+            font-size: 26px;
+        }
+        .invoice-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        .invoice-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .invoice-table th, .invoice-table td {
+            text-align: left;
+            padding: 8px 0;
+            border-bottom: 1px dashed #ddd;
+            font-size: 14px;
+        }
+        .invoice-table th { border-bottom: 2px solid #8B4513; }
+        .totals-section {
+            text-align: right;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .watermark {
+            position: absolute;
+            top: 40%;
+            left: 20%;
+            font-size: 70px;
+            font-weight: bold;
+            transform: rotate(-25deg);
+            opacity: 0.12;
+            pointer-events: none;
+            width: 100%;
+            text-align: center;
+        }
+        .paid-stamp { color: green; }
+        .unpaid-stamp { color: red; }
+        .no-print-actions {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .btn {
+            background-color: #8B4513;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .invoice-wrapper { border: none; box-shadow: none; margin: 0; }
+            .no-print-actions { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="invoice-wrapper">
+        <div id="invoice-stamp" class="watermark"></div>
+
+        <div class="invoice-header">
+            <h1>BRUCHEWIE</h1>
+            <p style="margin: 5px 0; font-size: 12px;">Dubai Chewy Cookies, Brunei</p>
+            <p style="margin: 0; font-size: 12px;">Contact: +673 821 1908</p>
+        </div>
+
+        <div class="invoice-details">
+            <div>
+                <strong>Invoice To:</strong><br>
+                Valued Customer
+            </div>
+            <div style="text-align: right;">
+                <strong>Invoice ID:</strong> <span id="inv-id">------</span><br>
+                <strong>Date:</strong> <span id="inv-date">--/--/----</span>
+            </div>
+        </div>
+
+        <table class="invoice-table">
+            <thead>
+                <tr>
+                    <th>Item Description</th>
+                    <th style="text-align: right;">Total</th>
+                </tr>
+            </thead>
+            <tbody id="inv-items-body">
+                </tbody>
+        </table>
+
+        <div class="totals-section">
+            <p>Subtotal: <span id="inv-subtotal">$0.00 BND</span></p>
+            <p>Fulfillment: <span id="inv-fee">$0.00 BND</span></p>
+            <h3 style="margin-top: 5px; color: #8B4513;">Total Amount: <span id="inv-total">$0.00 BND</span></h3>
+        </div>
+
+        <div style="margin-top: 30px; text-align: center; font-size: 12px; border-top: 1px dashed #ccc; padding-top: 15px;">
+            <p>Thank you for supporting BruChewie!</p>
+            <p>Please transfer within 24 hours to secure your slots.</p>
+        </div>
+    </div>
+
+    <div class="no-print-actions">
+        <a href="salesorder.html" class="btn" style="background-color: #666;">Back to Orders</a>
+        <button class="btn" onclick="window.print()">Print Invoice / Receipt</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentId = localStorage.getItem('currentInvoiceId');
+            const orders = JSON.parse(localStorage.getItem('myOrders')) || [];
+            
+            // Find matched active record item
+            const currentOrder = orders.find(o => o.id === currentId);
+
+            if (!currentOrder) {
+                alert("No active order invoice targeted structure found!");
+                window.location.href = 'salesorder.html';
+                return;
+            }
+
+            // Populate text parameters
+            document.getElementById('inv-id').innerText = currentOrder.id;
+            document.getElementById('inv-date').innerText = currentOrder.date;
+            document.getElementById('inv-subtotal').innerText = `$${currentOrder.subtotal.toFixed(2)} BND`;
+            document.getElementById('inv-fee').innerText = `$${currentOrder.fee.toFixed(2)} BND`;
+            document.getElementById('inv-total').innerText = `$${currentOrder.total.toFixed(2)} BND`;
+
+            // Display dynamic visual watermark stamps
+            const stamp = document.getElementById('invoice-stamp');
+            stamp.innerText = currentOrder.status.toUpperCase();
+            stamp.className = currentOrder.status === 'Paid' ? 'watermark paid-stamp' : 'watermark unpaid-stamp';
+
+            // Loop and print dynamic product table details
+            const tableBody = document.getElementById('inv-items-body');
+            tableBody.innerHTML = '';
+            
+            currentOrder.items.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${item.quantity}x ${item.name} (${item.flavor})</td>
+                    <td style="text-align: right;">$${(item.price * item.quantity).toFixed(2)} BND</td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        });
+    </script>
+</body>
+</html>

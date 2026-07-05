@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BruChewie | Menu Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+       
+        body {
+            background-image: url("bg.jpg");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            background-size: cover;
+            min-height: 100vh;
+            margin: 0; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .menu-marquee {
+            width: 100%;
+            background: rgba(139, 69, 19, 0.85); /* Warm chocolate brown banner */
+            color: white;
+            padding: 10px 0;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .menu-marquee h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .menu-container {
+            width: 90%;
+            max-width: 900px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            padding: 20px;
+            margin-bottom: 50px;
+        }
+        
+        .menu-card {
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid #8B4513;
+            border-radius: 15px;
+            padding: 30px 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #333;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .menu-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.25);
+            background-color: #fdf6f0; /* Soft cream color on hover */
+        }
+        
+        .card-icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #8B4513;
+            margin-bottom: 10px;
+        }
+
+        .card-desc {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+
+    <header style="width: 100%;">
+        <nav class="navbar">
+            <div class="logo-container">
+                <img src="bruchewie logo.png" class="nav-circle-logo" width="60" height="60">
+                <div class="logo">BruChewie</div>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="Search...">
+                <button>🔍</button>
+            </div>
+            <ul class="nav-links">
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="signup.html">Register</a></li>
+                <li><a href="login.html" class="icon-link">Profile</a></li>
+                <li><a href="checkout.html" class="icon-link">Cart(<span id="cart-count">0</span>)</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="menu-marquee">
+        <marquee behavior="scroll" direction="left" scrollamount="8">
+            <h1>⋆. 𐙚 ˚ Welcome to the BruChewie Dashboard! Download our full catalogue or track your active orders below ˚ 𐙚 ⋆.</h1>
+        </marquee>
+    </div>
+
+    <main class="menu-container">
+        
+        <!-- Card 1: Catalogue PDF -->
+        <a href="BruChewie Catalogue.pdf" target="_blank" class="menu-card">
+            <div class="card-icon">📖</div>
+            <div class="card-title">View Catalogue</div>
+            <div class="card-desc">Open our official cookie menu and price list in a new tab.</div>
+        </a>
+
+        <a href="salesorder.html" class="menu-card">
+            <div class="card-icon">📋</div>
+            <div class="card-title">Sales Orders</div>
+            <div class="card-desc">Check your recent incoming orders and update payment confirmations.</div>
+        </a>
+
+        <a href="salesinvoice.html" class="menu-card">
+            <div class="card-icon">🧾</div>
+            <div class="card-title">Sales Invoices</div>
+            <div class="card-desc">Review formal receipt slip summaries and print physical records.</div>
+        </a>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BruChewie</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-image: url("bg.jpg");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            background-size: cover;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .order-container {
+            background: white;
+            border: 2px solid #8B4513;
+            border-radius: 12px;
+            padding: 25px;
+            max-width: 800px;
+            margin: 40px auto;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #8B4513;
+            border-bottom: 2px dashed #8B4513;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .order-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #fff8f5;
+        }
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+        }
+        .status-unpaid { color: #d9534f; font-weight: bold; }
+        .status-paid { color: #5cb85c; font-weight: bold; }
+        .action-btn {
+            background-color: #8B4513;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 5px;
+            font-size: 13px;
+        }
+        .action-btn:hover { background-color: #A0522D; }
+        .pay-btn { background-color: #5cb85c; }
+        .pay-btn:hover { background-color: #4cae4c; }
+        .home-link {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div style="max-width: 800px; margin: auto;">
+        <a href="index.html" class="home-link">← Return to Shop</a>
+    </div>
+
+    <main class="order-container">
+        <h2>Sales Order Log</h2>
+        <div id="orders-list">
+            <p style="color: #888; font-style: italic;">No orders placed yet.</p>
+        </div>
+    </main>
+
+    <script>
+        let orders = JSON.parse(localStorage.getItem('myOrders')) || [];
+
+        function renderOrders() {
+            const container = document.getElementById('orders-list');
+            container.innerHTML = '';
+
+            if (orders.length === 0) {
+                container.innerHTML = '<p style="color: #888; font-style: italic;">No sales orders found.</p>';
+                return;
+            }
+
+            orders.forEach((order, index) => {
+                const card = document.createElement('div');
+                card.className = 'order-card';
+
+                let itemsHtml = order.items.map(item => 
+                    `<li>${item.quantity}x ${item.name} (${item.flavor})</li>`
+                ).join('');
+
+                const statusClass = order.status === 'Paid' ? 'status-paid' : 'status-unpaid';
+
+                card.innerHTML = `
+                    <div class="order-header">
+                        <span>Order ID: ${order.id} (${order.date})</span>
+                        <span class="${statusClass}">Status: ${order.status}</span>
+                    </div>
+                    <ul style="margin-bottom: 15px; padding-left: 20px;">
+                        ${itemsHtml}
+                    </ul>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <strong>Total: $${order.total.toFixed(2)} BND</strong>
+                        <div>
+                            ${order.status === 'Unpaid' ? `<button class="action-btn pay-btn" onclick="markAsPaid(${index})">Mark as Paid</button>` : ''}
+                            <button class="action-btn" onclick="viewInvoice('${order.id}')">View Receipt</button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        window.markAsPaid = function(index) {
+            orders[index].status = 'Paid';
+            localStorage.setItem('myOrders', JSON.stringify(orders));
+            renderOrders();
+            alert('Payment Confirmed! Sales Invoice has been updated.');
+        };
+
+        window.viewInvoice = function(orderId) {
+            // Save the selected ID to storage so the invoice page knows which one to print
+            localStorage.setItem('currentInvoiceId', orderId);
+            window.location.href = 'salesinvoice.html';
+        };
+
+        document.addEventListener('DOMContentLoaded', renderOrders);
+    </script>
+</body>
+</html>
